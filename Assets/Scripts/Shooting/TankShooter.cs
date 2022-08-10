@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TankShooter : Shooter
 {
+    public Transform firepointTransform;
+
     // Start is called before the first frame update
     public override void Start()
     {
