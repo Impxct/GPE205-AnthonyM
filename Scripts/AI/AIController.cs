@@ -7,6 +7,7 @@ public class AIController : Controller
     public enum AIState { Guard, Chase, Flee, Patrol, Attack, Scan, BackToPost };
     public AIState currentState;
     private float lastStateChangeTime;
+    public GameObject target;
 
     // Start is called before the first frame update
     public override void Start()
@@ -65,5 +66,20 @@ public class AIController : Controller
         currentState = newState;
         //save the time when states change
         lastStateChangeTime = Time.time;
+    }
+    
+    public void DoSeekState()
+    {
+        //Seek target
+        Seek(target);
+    }
+
+
+    public void Seek (GameObject target)
+    {
+        //rotate towards target its seeking,
+        pawn.RotateTowards(target.transform.position);
+        //move towards target seeking
+        pawn.MoveForward();
     }
 }

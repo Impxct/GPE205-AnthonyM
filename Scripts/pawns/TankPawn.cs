@@ -37,4 +37,13 @@ public class TankPawn : Pawn
     {
         mover.Rotate(-turnSpeed);
     }
+    public override void RotateTowards(Vector3 targetPosition)
+    {
+        //Vector to target
+        Vector3 vectorToTarget = targetPosition - transform.position;
+        //find rotation for vector
+        Quaternion targetRotation = Quaternion.LookRotation(vectorToTarget, Vector3.up);
+        //rotate towards vector, not too much >>
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+    }
 }
